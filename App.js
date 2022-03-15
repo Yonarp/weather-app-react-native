@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0B0C1E",
+    //backgroundColor: "white",
     //alignItems: "center",
    // justifyContent: "center",
   },
@@ -74,7 +75,8 @@ const styles = StyleSheet.create({
   main: {
     flex: .7,
     justifyContent: "center",
-    marginTop: 100,
+    alignItems: "center",
+    marginTop: 5,
     position: 'relative',
   },
   header: {
