@@ -4,42 +4,43 @@ import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import * as API_DUMMY from "./tempData.json";
 import WeatherInfo from "./components/WeatherInfo";
+import { VictoryBar, VictoryChart, VictoryTheme } from "victory-native";
 
 export default function App() {
-  const API_KEY = "ed153a27ac549819372b9010d7f3c3cf";
-  const URL = "https://api.openweathermap.org/data/2.5/weather?";
+  const API_KEY = "9d8f4895a487445db1b165027221403 ";
+  const URL = "http://api.weatherapi.com/v1/forecast.json?key=9d8f4895a487445db1b165027221403&q=Brisbane&days=1&aqi=no&alerts=yes";
   const [weather, setWeather] = useState(null);
   const [temp, setTemp] = useState(null);
 
   useEffect(() => {
     load();
-  });
+  },[]);
   async function load() {
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
+      if (status !== "granted") { 
         alert("Permission to access location was denied");
       }
       let location = await Location.getCurrentPositionAsync({});
       const { longitude, latitude } = location.coords;
-      /*     const response = await fetch(
+          const response = await fetch(
         `${URL}lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       );
-      const data = await response.json(); */
-      /*       if(response.ok){
+      const data = await response.json();
+            if(response.ok){
         setWeather(data);
-        setTemp(data.main.temp);
+        setTemp(data.current.temp_c);
       }
       else {
         setWeather("error");
         setTemp("there was a problem")
         alert(response.status);
         
-      } */
+      }
 
-      const data = API_DUMMY;
+      /* const data = API_DUMMY;
       setWeather(data);
-      setTemp(data.current.temp_c);
+      setTemp(data.current.temp_c); */
     } catch (error) {
       alert(error);
     }
@@ -48,7 +49,7 @@ export default function App() {
   return weather ? (
       <SafeAreaView style={styles.container}> 
       <StatusBar style="light" />
-      <Text style= {styles.header}>Todays Report</Text>
+      <Text style= {styles.header}>Today's Report</Text>
       <View style={styles.main}>
         <WeatherInfo weather={weather} />
       </View>
@@ -73,10 +74,10 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   main: {
-    flex: .7,
-    justifyContent: "center",
+    flex: 1,
+    //justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: 0,
     position: 'relative',
   },
   header: {
@@ -84,7 +85,9 @@ const styles = StyleSheet.create({
      fontSize: 20,
      fontWeight: "600",
      position: 'absolute',
-      top: 60,
+      top: 40,
+      left: 20,
+      elevation: 10,
 
   }
 });
