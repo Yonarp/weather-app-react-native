@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image,TouchableNativeFeedback } from "react-nat
 import React from "react";
 import WeatherDetailsCard from "./WeatherDetailsCard";
 import LineChart from './LineChart';
+import {LinearGradient} from "expo-linear-gradient";
 import {
   useFonts,
   B612Mono_400Regular,
@@ -19,12 +20,8 @@ export default function WeatherInfo({ weather }) {
   const date = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const year = new Date().getFullYear();
-  const data = [
-    { quarter: 1, earnings: 13000 },
-    { quarter: 2, earnings: 16500 },
-    { quarter: 3, earnings: 14250 },
-    { quarter: 4, earnings: 19000 }
-  ];
+  let color1 = '#274060';
+  let color2 = '#1b2845';
   
 
   let [fontsLoaded] = useFonts({
@@ -34,12 +31,22 @@ export default function WeatherInfo({ weather }) {
     B612Mono_700Bold_Italic,
   });
 
+  if(weather.current.is_day == 1){
+    color1 = '#046190';
+    color2 = '#0d0a0b';
+  }
+
   return (
     <View style={styles.main}>
-    <TouchableNativeFeedback
-            onPress={console.log("pressed")}
-            background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+      <TouchableNativeFeedback
+              onPress={console.log("pressed")}
+              background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
     <View style={styles.container}>
+      <LinearGradient
+       // Background Linear Gradient
+       colors={[color1, color2]}
+       style={styles.background}
+     />
       <Text style={styles.header}>{name}</Text>
       <View style={styles.temperature}>
         <Text style={styles.text}>
@@ -69,6 +76,7 @@ const styles = StyleSheet.create({
 
   },
   container: {
+    overflow: "hidden",
     marginTop: 80,
     alignItems: "center",
     height: "30%",
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "space-evenly",
     flexDirection: "row",
-    backgroundColor: "#232435",
+   // backgroundColor: "#232435",
     borderRadius: 20,
     shadowColor: "black",
     elevation: 10,
@@ -129,5 +137,12 @@ const styles = StyleSheet.create({
   temperature: {
     height: "100%",
     justifyContent: "space-evenly",
+  },
+  background: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 300,
   },
 });

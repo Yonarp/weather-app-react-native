@@ -56,13 +56,8 @@ const LineChart = ({ weather, date, month, year }) => {
           standalone={false}
         />
         <VictoryLine
-          labels={({ datum }) => datum.y}
           style={{
             data: { stroke: "#f8de7e", strokeWidth: 2, fill: "transparent" },
-            labels: {
-              fontSize: 15,
-              fill: ({ datum }) => (datum.x === 3 ? "#ffffff" : "#f8de7e"),
-            },
             grid: { strokeDasharray: "0,5" },
 
             //parent: { border: "1px solid #ccc"}
@@ -77,7 +72,7 @@ const LineChart = ({ weather, date, month, year }) => {
           ]}
           animate={{
             duration: 2000,
-            onLoad: { duration: 1000 },
+            onLoad: { duration: 2000 },
           }}
         />
       </VictoryChart>
