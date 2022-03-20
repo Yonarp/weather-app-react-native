@@ -1,8 +1,14 @@
-import { View, Text, StyleSheet, Image,TouchableNativeFeedback } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback,
+} from "react-native";
 import React from "react";
 import WeatherDetailsCard from "./WeatherDetailsCard";
-import LineChart from './LineChart';
-import {LinearGradient} from "expo-linear-gradient";
+import LineChart from "./LineChart";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   useFonts,
   B612Mono_400Regular,
@@ -11,8 +17,6 @@ import {
   B612Mono_700Bold_Italic,
 } from "@expo-google-fonts/b612-mono";
 
-
-
 export default function WeatherInfo({ weather }) {
   const icon = `https://${weather.current.condition.icon}`;
   const name = weather.location.name;
@@ -20,9 +24,8 @@ export default function WeatherInfo({ weather }) {
   const date = new Date().getDate();
   const month = new Date().getMonth() + 1;
   const year = new Date().getFullYear();
-  let color1 = '#274060';
-  let color2 = '#1b2845';
-  
+  let color1 = "#274060";
+  let color2 = "#1b2845";
 
   let [fontsLoaded] = useFonts({
     B612Mono_400Regular,
@@ -31,40 +34,45 @@ export default function WeatherInfo({ weather }) {
     B612Mono_700Bold_Italic,
   });
 
-  if(weather.current.is_day == 1){
-    color1 = '#046190';
-    color2 = '#0d0a0b';
+  if (weather.current.is_day == 1) {
+    color1 = "#046190";
+    color2 = "#0d0a0b";
   }
 
   return (
     <View style={styles.main}>
       <TouchableNativeFeedback
-              onPress={console.log("pressed")}
-              background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-    <View style={styles.container}>
-      <LinearGradient
-       // Background Linear Gradient
-       colors={[color1, color2]}
-       style={styles.background}
-     />
-      <Text style={styles.header}>{name}</Text>
-      <View style={styles.temperature}>
-        <Text style={styles.text}>
-          {weather.current.temp_c}
-          <Text style={styles.text2}>&deg;c</Text>
-        </Text>
-      </View>
-      <View style={styles.weatherImage}>
-        <Image style={styles.image} source={{ uri: icon }} />
-        <Text style={styles.description}>{description}</Text>
-      </View>
-      <Text style={styles.date}>
-        {date} / {month} / {year}{" "}
-      </Text>
-    </View>
-    </TouchableNativeFeedback>
-    <WeatherDetailsCard weather = {weather}/>
-    <LineChart weather = {weather} date={date} month={month} year={year}/>
+        onPress={console.log("pressed")}
+        background={
+          Platform.OS === "android"
+            ? TouchableNativeFeedback.SelectableBackground()
+            : ""
+        }
+      >
+        <View style={styles.container}>
+          <LinearGradient
+            // Background Linear Gradient
+            colors={[color1, color2]}
+            style={styles.background}
+          />
+          <Text style={styles.header}>{name}</Text>
+          <View style={styles.temperature}>
+            <Text style={styles.text}>
+              {weather.current.temp_c}
+              <Text style={styles.text2}>&deg;c</Text>
+            </Text>
+          </View>
+          <View style={styles.weatherImage}>
+            <Image style={styles.image} source={{ uri: icon }} />
+            <Text style={styles.description}>{description}</Text>
+          </View>
+          <Text style={styles.date}>
+            {date} / {month} / {year}{" "}
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
+      <WeatherDetailsCard weather={weather} />
+      <LineChart weather={weather} date={date} month={month} year={year} />
     </View>
   );
 }
@@ -72,8 +80,7 @@ export default function WeatherInfo({ weather }) {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-   alignItems: "center",
-
+    alignItems: "center",
   },
   container: {
     overflow: "hidden",
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "space-evenly",
     flexDirection: "row",
-   // backgroundColor: "#232435",
+    // backgroundColor: "#232435",
     borderRadius: 20,
     shadowColor: "black",
     elevation: 10,
@@ -139,7 +146,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   background: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,

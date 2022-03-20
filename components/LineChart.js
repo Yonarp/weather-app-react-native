@@ -12,10 +12,10 @@ const LineChart = ({ weather, date, month, year }) => {
   let hours = new Date().getHours();
   const arr = weather.forecast.forecastday.map((day) => day.hour.slice(0, 24));
   const time = arr.map((item) => item.slice(0, 24));
-  console.log(time[0][23].time);
-  if (hours.toString().length === 1) {
+  console.log(time[0][hours].time);
+ /*  if (hours.toString().length === 1) {
     hours = "0" + hours;
-  }
+  } */
   let hour1 = hours + 1
   if(hour1 > 23){
     hour1 = 23
@@ -35,6 +35,7 @@ const LineChart = ({ weather, date, month, year }) => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Forecasted Temperature <Text style={styles.headerChild}>For Every Hour</Text> </Text>
       <VictoryChart width={330} height={300} theme={VictoryTheme.material}>
         <VictoryAxis
           dependentAxis
@@ -43,6 +44,7 @@ const LineChart = ({ weather, date, month, year }) => {
             ticks: { stroke: "white" },
             tickLabels: { fill: "white" },
             grid: { stroke: "transparent" },
+            position: "relative",
           }}
           standalone={false}
         />
@@ -82,6 +84,19 @@ const LineChart = ({ weather, date, month, year }) => {
 
 const styles = StyleSheet.create({
   container: {},
+  header: { 
+    fontSize: 20,
+    color: "white",
+    fontWeight: "100",
+    position: "absolute",
+    top:10,
+    left: 20
+  },
+  headerChild: {
+    fontSize: 10,
+    color: "#f8de7e"
+
+  }
 });
 
 export default LineChart;
