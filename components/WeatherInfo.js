@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image,TouchableNativeFeedback } from "react-native";
 import React from "react";
-import { AppLoading } from "expo-app-loading";
+import WeatherDetailsCard from "./WeatherDetailsCard";
 import LineChart from './LineChart';
 import {
   useFonts,
@@ -56,6 +56,7 @@ export default function WeatherInfo({ weather }) {
       </Text>
     </View>
     </TouchableNativeFeedback>
+    <WeatherDetailsCard weather = {weather}/>
     <LineChart weather = {weather} date={date} month={month} year={year}/>
     </View>
   );
