@@ -5,5 +5,5 @@ API : https://www.weatherapi.com/ <br>
 
 <strong>WORK IN PROGRESS</strong> 
 <br>Gif Down Below  &#8595;
-
-![](https://imgur.com/a/GHbqnzj)
+<br><br>
+![loading](https://media.giphy.com/media/cE7P8gWUOy3U71tQE5/giphy.gif);
